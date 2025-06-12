@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Access DarkOS</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0a0a0a;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ffcc;
+    }
+    .login-box, .menu-box {
+      border: 2px solid #00ffcc;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      margin: 100px auto;
+      border-radius: 12px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.8em;
+    }
+    input, select, button {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      background-color: #000;
+      color: #00ffcc;
+      border: 1px solid #00ffcc;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+    button:hover, select:hover {
+      background-color: #002f2f;
+    }
+    a {
+      color: #00ffcc;
+      text-decoration: underline;
+      display: block;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box" id="login-box">
+    <h1>Access DarkOS</h1>
+    <label>Username</label>
+    <input type="text" placeholder="Username" id="username" value="Money Guy7">
+    <label>Password</label>
+    <input type="password" placeholder="Password" id="password">
+    <button onclick="login()">Sign In</button>
+    <a href="#" onclick="enterFullscreen()">Enter Fullscreen</a>
+  </div>
+
+  <div class="menu-box" id="menu-box" style="display: none;">
+    <h1>How would you like to hack?</h1>
+    <select id="main-option" onchange="showSubOptions()">
+      <option value="">Select an Option</option>
+      <option value="bank">Bank</option>
+      <option value="government">Government</option>
+      <option value="crypto">Crypto Wallet</option>
+      <option value="social">Social Media</option>
+      <option value="wifi">Wi-Fi Network</option>
+      <option value="camera">Security Camera</option>
+      <option value="email">Email Account</option>
+      <option value="phone">Phone</option>
+      <option value="school">School Server</option>
+      <option value="cloud">Cloud Storage</option>
+      <option value="router">Home Router</option>
+    </select>
+
+    <select id="sub-option" style="display: none;"></select>
+  </div>
+
+  <script>
+    function login() {
+      document.getElementById('login-box').style.display = 'none';
+      document.getElementById('menu-box').style.display = 'block';
+    }
+
+    function enterFullscreen() {
+      const docElm = document.documentElement;
+      if (docElm.requestFullscreen) {
+        docElm.requestFullscreen();
+      } else if (docElm.mozRequestFullScreen) {
+        docElm.mozRequestFullScreen();
+      } else if (docElm.webkitRequestFullScreen) {
+        docElm.webkitRequestFullScreen();
+      } else if (docElm.msRequestFullscreen) {
+        docElm.msRequestFullscreen();
+      }
+    }
+
+    const subOptions = {
+      bank: ['Direct', 'Phishing', 'Data Breach'],
+      government: ['Backdoor Exploit', 'Insider Access'],
+      crypto: ['Seed Phrase Attack', 'Wallet Cloner', 'Dust Attack'],
+      social: ['Fake Login Page', 'Token Grabber', '2FA Bypass'],
+      wifi: ['Brute Force', 'Packet Sniffer', 'Evil Twin'],
+      camera: ['Default Password', 'Remote Stream Access'],
+      email: ['Credential Stuffing', 'Spoofing'],
+      phone: ['SIM Swap', 'Trojan App'],
+      school: ['Grade Changer', 'Attendance Manipulator'],
+      cloud: ['API Key Leak', 'Session Hijack'],
+      router: ['DNS Hijack', 'Firmware Exploit']
+    };
+
+    function showSubOptions() {
+      const main = document.getElementById('main-option').value;
+      const sub = document.getElementById('sub-option');
+      sub.innerHTML = '';
+      if (subOptions[main]) {
+        sub.style.display = 'block';
+        subOptions[main].forEach(opt => {
+          const o = document.createElement('option');
+          o.textContent = opt;
+          sub.appendChild(o);
+        });
+      } else {
+        sub.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
